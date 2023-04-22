@@ -1,0 +1,12 @@
+// Typography для App
+$fontFamily: 'Roboto', sans-serif;
+
+
+// MD
+$fontSizeMD: 15px;
+$lineHeightMD: 22px;
+
+$fontRegularMD: 400 $fontSizeMD $fontFamily;
+$fontMediumMD: 500 $fontSizeMD $fontFamily;
+$fontSemiBoldMD: 600 $fontSizeMD $fontFamily;
+$fontBoldMD: 700 $fontSizeMD $fontFamily;

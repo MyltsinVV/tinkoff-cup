@@ -27,3 +27,17 @@ export const ExpenseCategory: Record<ExpenseCategoryKeys, ExpenseCategoryItem> =
 export const ExpenseCategoryList = Object
   .values(ExpenseCategory)
   .sort((a, b) => Number(a.id) - Number(b.id))
+
+export const expenseDateCreateFormat = 'DD-MM-YYYY'
+
+const EXPENSES_LS_KEY = 'expenses'
+
+export const updateExpensesLS = (newList: string) => {
+  localStorage.setItem(EXPENSES_LS_KEY, newList)
+}
+
+export const getExpensesLS = () => {
+  const expensesLS = localStorage.getItem(EXPENSES_LS_KEY)
+
+  return expensesLS ? JSON.parse(expensesLS) : []
+}

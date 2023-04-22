@@ -1,8 +1,9 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {useSelector} from 'react-redux'
-import {Moment} from 'moment/moment'
+import {getExpensesLS, updateExpensesLS} from "./config";
 
 export type ExpensesType = {
+  id: number
   date: string
   category: string
   sum: number
@@ -14,7 +15,7 @@ export type ExpensesModelType = {
 }
 
 export const initialState: ExpensesModelType = {
-  list: [],
+  list: getExpensesLS(),
 }
 
 export const expensesModel = createSlice({
@@ -23,15 +24,20 @@ export const expensesModel = createSlice({
   reducers: {
     addExpenses: (state, {payload}: PayloadAction<ExpensesType>) => {
       state.list.push(payload)
+      updateExpensesLS(JSON.stringify(state.list))
     },
-  },
+    deleteExpenses: (state, {payload}: PayloadAction<Number>) => {
+      state.list.filter((item) => item.id !== payload)
+      updateExpensesLS(JSON.stringify(state.list))
+    }
+  }
 })
 
-export const {addExpenses} = expensesModel.actions
+export const {addExpenses, deleteExpenses} = expensesModel.actions
 
 export const useAllExpenses = () => useSelector(
   createSelector(
     (state: RootState) => state.expenses.list,
-    (list) => list
+    (list) => [...list].sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
   )
 )
