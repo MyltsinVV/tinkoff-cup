@@ -42,7 +42,7 @@ export const AddExpensesModal: FC<AddExpensesModalType> = ({open, onClose}) => {
       onClose={onClose}
     >
       <div className={styles.wrapper}>
-        <h1 className={styles.header}>Добавление расходов</h1>
+        <h2 className={styles.header}>Добавление расхода</h2>
         <form className={styles.form} onSubmit={submitHandler}>
           <div className={styles.formItem}>
             <label>Дата<span>*</span></label>

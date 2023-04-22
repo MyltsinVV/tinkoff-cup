@@ -1,4 +1,5 @@
 @import 'src/shared/styles/vars.scss';
+@import 'src/shared/styles/typography.scss';
 
 .tableRow {
   &:last-child td,
@@ -20,5 +21,13 @@
     width: 20px;
     height: 20px;
     fill: $red500;
+  }
+}
+
+.sumAll {
+  color: $gray900;
+
+  span {
+    font: $fontBoldMD;
   }
 }

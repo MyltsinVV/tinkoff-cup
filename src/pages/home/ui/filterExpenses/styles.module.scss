@@ -8,6 +8,10 @@
   border-radius: $mainBorderRadius;
   border: 1px solid $border;
 
+  label {
+    color: $gray900;
+  }
+
   .item {
     gap: 4px;
     display: flex;

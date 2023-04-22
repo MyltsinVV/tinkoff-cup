@@ -49,7 +49,7 @@ export  const ExpensesTable = () => {
         </Table>
       </TableContainer>
 
-      <div>
+      <div className={styles.sumAll}>
         Общая сумма: <span>{formatNumber(Number(sumAll))}</span>
       </div>
 

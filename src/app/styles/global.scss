@@ -1,3 +1,7 @@
 .MuiInputBase-root {
   height: 32px;
 }
+
+.MuiDateRangeCalendar-root > div:first-child {
+  display: none;
+}

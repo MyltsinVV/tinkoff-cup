@@ -1,6 +1,8 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {useSelector} from 'react-redux'
 import {getExpensesLS, updateExpensesLS} from './config'
+import moment, {Moment} from "moment/moment";
+import {DateRange} from "@mui/x-date-pickers-pro";
 
 export type ExpensesType = {
   id: number
@@ -12,12 +14,14 @@ export type ExpensesType = {
 
 export type ExpensesModelType = {
   list: ExpensesType[]
-  categoryFilter: string
+  categoryFilter: string,
+  dateRangeFilter?: [string, string]
 }
 
 export const initialState: ExpensesModelType = {
   list: getExpensesLS(),
-  categoryFilter: ''
+  categoryFilter: '',
+  dateRangeFilter: undefined
 }
 
 export const expensesModel = createSlice({
@@ -35,10 +39,14 @@ export const expensesModel = createSlice({
     setCategoryFilter: (state, {payload}: PayloadAction<string>) => {
       state.categoryFilter = payload
     },
+    setDateRangeFilter: (state, {payload}: PayloadAction<[string, string] | undefined>) => {
+      console.log(payload)
+      state.dateRangeFilter = payload
+    },
   }
 })
 
-export const {addExpenses, deleteExpenses, setCategoryFilter} = expensesModel.actions
+export const {addExpenses, deleteExpenses, setCategoryFilter, setDateRangeFilter} = expensesModel.actions
 
 export const useSortedExpenses = () => useSelector(
   createSelector(
@@ -51,10 +59,18 @@ export const useAllExpenses = () => useSelector(
   createSelector(
     useSortedExpenses,
     (state: RootState) => state.expenses.categoryFilter,
-    (list, categoryFilter) => {
-      if (!categoryFilter) return list
+    (state: RootState) => state.expenses.dateRangeFilter,
+    (list, categoryFilter, dateRangeFilter) => {
+      let filteredList = list
+      if (dateRangeFilter && dateRangeFilter[0] && dateRangeFilter[1]) {
+        const [dateStart, dateEnd] = dateRangeFilter
+        filteredList = list.filter(({date}) =>
+          moment(date).isAfter(dateStart) && moment(date).isBefore(moment(dateEnd).add(1, 'days')))
+      }
 
-      return list.filter(({category}) => category === categoryFilter)
+      if (!categoryFilter) return filteredList
+
+      return filteredList.filter(({category}) => category === categoryFilter)
     }
   )
 )
