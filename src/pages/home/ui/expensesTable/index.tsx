@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 import {Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material'
 import styles from './styles.module.scss'
-import {useDispatch} from 'react-redux'
 import {ExpenseCategory, expenseDateCreateFormat, ExpensesType, useAllExpenses} from 'entities/expenses'
 import {ReactSVG} from 'react-svg'
 import moment from 'moment/moment'
 import {DeleteModal} from '../deleteModel'
 import {TableContainer} from 'shared/ui/tableContainer'
 import deleteIcon from './icon/delete.svg'
-import {getValueFromObject} from "../../../../shared/lib";
+import {getValueFromObject} from 'shared/lib'
 
 
 export  const ExpensesTable = () => {

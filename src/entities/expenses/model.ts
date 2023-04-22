@@ -12,10 +12,12 @@ export type ExpensesType = {
 
 export type ExpensesModelType = {
   list: ExpensesType[]
+  categoryFilter: string
 }
 
 export const initialState: ExpensesModelType = {
   list: getExpensesLS(),
+  categoryFilter: ''
 }
 
 export const expensesModel = createSlice({
@@ -29,15 +31,37 @@ export const expensesModel = createSlice({
     deleteExpenses: (state, {payload}: PayloadAction<Number>) => {
       state.list = state.list.filter((item) => item.id !== payload)
       updateExpensesLS(JSON.stringify(state.list))
-    }
+    },
+    setCategoryFilter: (state, {payload}: PayloadAction<string>) => {
+      state.categoryFilter = payload
+    },
   }
 })
 
-export const {addExpenses, deleteExpenses} = expensesModel.actions
+export const {addExpenses, deleteExpenses, setCategoryFilter} = expensesModel.actions
 
-export const useAllExpenses = () => useSelector(
+export const useSortedExpenses = () => useSelector(
   createSelector(
     (state: RootState) => state.expenses.list,
     (list) => [...list].sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
+  )
+)
+
+export const useAllExpenses = () => useSelector(
+  createSelector(
+    useSortedExpenses,
+    (state: RootState) => state.expenses.categoryFilter,
+    (list, categoryFilter) => {
+      if (!categoryFilter) return list
+
+      return list.filter(({category}) => category === categoryFilter)
+    }
+  )
+)
+
+export const useCategoryFilter = () => useSelector(
+  createSelector(
+    (state: RootState) => state.expenses.categoryFilter,
+    (categoryFilter) => categoryFilter
   )
 )

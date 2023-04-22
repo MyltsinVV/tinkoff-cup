@@ -61,6 +61,7 @@ export const AddExpensesModal: FC<AddExpensesModalType> = ({open, onClose}) => {
               onChange={(event) =>
                 setFields((prevState) => ({...prevState, category: event.target.value}))}
               fullWidth
+              className={styles.input}
             >
               {ExpenseCategoryList.map((item) =>
                 <MenuItem key={item.id} value={item.id}>{item.label}</MenuItem>)}
@@ -77,6 +78,7 @@ export const AddExpensesModal: FC<AddExpensesModalType> = ({open, onClose}) => {
               onChange={(event) =>
                 setFields((prevState) => ({...prevState, sum: event.target.value}))}
               fullWidth
+              className={styles.input}
             />
           </div>
 
@@ -87,6 +89,7 @@ export const AddExpensesModal: FC<AddExpensesModalType> = ({open, onClose}) => {
               onChange={(event) =>
                 setFields((prevState) => ({...prevState, comment: event.target.value}))}
               fullWidth
+              className={styles.input}
             />
           </div>
           <div className={styles.submitButton}>

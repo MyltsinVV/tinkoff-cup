@@ -5,7 +5,7 @@
 
   &.MuiTableContainer-root {
     background: $white;
-    border-radius: 12px;
+    border-radius: $mainBorderRadius;
     border: 1px solid $border;
     flex-grow: 1;
     position: relative;

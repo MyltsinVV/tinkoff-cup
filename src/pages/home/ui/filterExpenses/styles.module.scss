@@ -1,0 +1,11 @@
+@import 'src/shared/styles/vars.scss';
+
+.wrapper {
+  background: $white;
+  width: 300px;
+  border-radius: $mainBorderRadius;
+
+  .select {
+    height: 44px;
+  }
+}

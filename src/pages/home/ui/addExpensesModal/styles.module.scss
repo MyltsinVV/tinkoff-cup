@@ -10,7 +10,7 @@
   transform: translate(-50%, -50%);
   border: 1px solid $border;
   box-shadow: $shadow;
-  border-radius: 12px;
+  border-radius: $mainBorderRadius;
   outline: none;
 
   .header {
@@ -35,6 +35,10 @@
           color: $red500;
           margin-left: 2px;
         }
+      }
+
+      .input {
+        height: 44px;
       }
     }
 
