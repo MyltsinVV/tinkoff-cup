@@ -29,7 +29,7 @@ export const AddExpensesModal: FC<AddExpensesModalType> = ({open, onClose}) => {
       ...fields,
       id: new Date().getTime(),
       date: fields.date.toString(),
-      sum: Number(fields.sum)
+      sum: Number(Number(fields.sum).toFixed(2))
     }))
     // clear fields
     setFields((prevState) => ({...prevState, sum: '', comment: ''}))

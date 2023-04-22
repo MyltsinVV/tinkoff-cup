@@ -2,10 +2,23 @@
 
 .wrapper {
   background: $white;
-  width: 300px;
+  padding: 8px;
+  display: flex;
+  gap: 16px;
   border-radius: $mainBorderRadius;
+  border: 1px solid $border;
+
+  .item {
+    gap: 4px;
+    display: flex;
+    align-items: center;
+  }
 
   .select {
-    height: 44px;
+    width: 200px;
+  }
+
+  .dateRange {
+    width: 255px;
   }
 }

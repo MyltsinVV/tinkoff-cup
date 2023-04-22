@@ -59,6 +59,16 @@ export const useAllExpenses = () => useSelector(
   )
 )
 
+export const useSumAll = () => {
+  createSelector(
+    useAllExpenses,
+    (list) => {
+      console.log(123)
+      return list.reduce((prev, curr) => prev + curr.sum, 0)
+    }
+  )
+}
+
 export const useCategoryFilter = () => useSelector(
   createSelector(
     (state: RootState) => state.expenses.categoryFilter,
