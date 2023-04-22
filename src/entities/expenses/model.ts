@@ -1,6 +1,6 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {useSelector} from 'react-redux'
-import {getExpensesLS, updateExpensesLS} from "./config";
+import {getExpensesLS, updateExpensesLS} from './config'
 
 export type ExpensesType = {
   id: number
@@ -27,7 +27,7 @@ export const expensesModel = createSlice({
       updateExpensesLS(JSON.stringify(state.list))
     },
     deleteExpenses: (state, {payload}: PayloadAction<Number>) => {
-      state.list.filter((item) => item.id !== payload)
+      state.list = state.list.filter((item) => item.id !== payload)
       updateExpensesLS(JSON.stringify(state.list))
     }
   }

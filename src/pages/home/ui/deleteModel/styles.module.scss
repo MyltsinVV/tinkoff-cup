@@ -1,0 +1,32 @@
+@import 'src/shared/styles/vars.scss';
+@import 'src/shared/styles/typography.scss';
+
+.wrapper {
+  padding: 16px;
+  background: $white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid $border;
+  box-shadow: $shadow;
+  border-radius: 12px;
+  outline: none;
+
+  .text {
+    font: $fontRegularMD;
+    line-height: $lineHeightMD;
+    color: $gray900;
+
+    span {
+      font: $fontSemiBoldMD;
+    }
+  }
+
+  .buttons {
+    padding-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}
