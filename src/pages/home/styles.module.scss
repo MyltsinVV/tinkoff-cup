@@ -1,0 +1,42 @@
+@import 'src/shared/styles/vars.scss';
+
+.wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+
+  .header {
+    color: $gray900;
+  }
+
+  .form {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .formItem {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      label {
+        color: $gray900;
+
+        span {
+          color: $red500;
+          margin-left: 2px;
+        }
+      }
+    }
+
+    .date {
+      width: 100%
+    }
+
+    .submitButton {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
